@@ -1,0 +1,27 @@
+<project name="phingphongTest" default="testAll" basedir="..">
+
+    <import file="phingphong.xml" />
+    
+    <target name="testAll">
+        <echo message="phingphong Test" />
+        <phingcall target="filesmodified"/>
+        <phingcall target="filecount"/>
+    </target>
+
+    <target name="filesmodified">
+        <fileset dir="." includes="**/*" id="files" />
+        <filesmodified before='60' returnProperty="isModified">
+            <fileset refid="files" />
+        </filesmodified>
+
+        <echo message="${isModified}" />
+    </target>
+    
+    <target name="filecount">
+        <filecount returnProperty="count">
+            <fileset dir="." includes="*.xml" />
+            <fileset dir="." includes="*.php" />
+        </filecount>
+        <echo message="${count}" />
+    </target>
+</project>

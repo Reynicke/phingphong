@@ -1,8 +1,9 @@
 <project name="phingphong">
-    <php function="dirname" returnProperty="basedir">
+    <php function="dirname" returnProperty="basedir" level="verbose">
         <param value="${phing.file}"/>
     </php>
     
     <includepath classpath="${basedir}/phingphong" />
     <taskdef name="filesmodified" classname="FilesModifiedTask" />
+    <taskdef name="filecount" classname="FileCountTask" />
 </project>

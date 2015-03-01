@@ -4,7 +4,7 @@ require_once "phing/Task.php";
 
 // Example
 //  <fileset dir="some/dir" includes="**/*" id="files" />
-//  <filesmodified before='60' modified="isModified">
+//  <filesmodified before='60' returnProperty="isModified">
 //      <fileset refid="files" />
 //  </filesmodified>
 
@@ -19,14 +19,14 @@ class FilesModifiedTask extends Task {
     protected $tStamp;
     protected $before = 60;
     protected $filesets = array();
-    protected $modified = null;
+    protected $returnProperty = null;
     
     public function setBefore($int) {
         $this->before = $int;
     }
     
-    public function setModified($str) {
-        $this->modified = $str;
+    public function setReturnProperty($str) {
+        $this->returnProperty = $str;
     }
     
     public function createFileSet() {
@@ -61,7 +61,7 @@ class FilesModifiedTask extends Task {
         }
 
         $project->setProperty(
-            $this->modified,
+            $this->returnProperty,
             $isModified
         );
     }
